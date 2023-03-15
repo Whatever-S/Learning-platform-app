@@ -1,20 +1,23 @@
 import '../pagination/Pagination.scss'
+import ReactPaginate from 'react-paginate';
 
 const Pagination = ({pageNumber, setPageNumber}) => {
-    let prev = () => {
-        if(pageNumber === 1) return;
-        setPageNumber(page =>  page - 1 )
-    };
-    let next = () => {
-        if(pageNumber === 3) return;
-        setPageNumber(page =>  page + 1 )
-    };
 
     return(
-        <div>
-            <button onClick={prev} className="btn">Prev</button>
-            <button onClick={next} className="btn">Next</button>
-        </div>
+        <ReactPaginate 
+        className='pagination'
+        nextLabel='>>'
+        previousLabel='<<'
+        previousClassName ='btn'
+        nextClassName='btn'
+        pageClassName='btn'
+        previousLinkClassName='link'
+        nextLinkClassName = 'link'
+        activeClassName='active'
+        disabledPrevClassName='disabled'
+        disabledNextClassName='disabled'
+        onPageChange={(data) => setPageNumber(data.selected +1)}
+        pageCount={3}/>
     )
 }
 

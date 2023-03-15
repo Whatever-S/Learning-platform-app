@@ -5,8 +5,8 @@ import '../MainPage/MainPage.scss'
 
 const MainPage = () =>{
     let [receivedData, updateReceivedData] = useState([]);
-    let [pageNumber, setPageNumber] = useState(1)
-    console.log(pageNumber)
+    let [pageNumber, setPageNumber] = useState(1);
+    let [loading, updateLoading] = useState(true);
     let _apiBase = `/api/core/preview-courses`;
 
     useEffect(() => {
@@ -22,6 +22,7 @@ const MainPage = () =>{
                 })
             }).then((res) => res.json());
             updateReceivedData(data);
+            updateLoading(false)
         })();
     }, [_apiBase]);
 
@@ -30,7 +31,7 @@ const MainPage = () =>{
     return(
         <>
         <h1 className="title">My learning platform</h1>
-        <CoursesList pageNumber={pageNumber} courses={receivedData.courses}/>
+        <CoursesList loading={loading}pageNumber={pageNumber} courses={receivedData.courses}/>
         <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
         </>
     )

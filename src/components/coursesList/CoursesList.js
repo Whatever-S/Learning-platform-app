@@ -1,33 +1,21 @@
 import { Link } from "react-router-dom"
-import { useState } from "react";
 import './CoursesList.scss';
+import Spinner from "../Spinner";
 
-function CoursesList ({pageNumber, courses}){
+function CoursesList ({loading, pageNumber, courses}){
     let content ='';
     //let [coursList, setcoursList] = useState(courses)
     const startIndex = (pageNumber - 1) * 10;
     const endIndex = pageNumber !== 3 ? startIndex + 10: startIndex + 9;
-  
-    // Get the courses to be displayed on the current page
-    let coursList;
+    let coursList
+    
 
-    function skillsList(skills){
-        if(skills){
-            skills.map(skill => {
-                return (
-                    <div>{skill}</div>
-                )              
-            })
-        }
-        
-    }
 
     if(courses){
         coursList = courses.slice(startIndex, endIndex);
         content = coursList.map(char => {
                 const {title, description, id, previewImageLink, rating, lessonsCount, meta } = char;
-                const {skills} = meta,
-                        temp = skillsList(skills)
+                const {skills} = meta;
                 // console.log(previewImageLink)
                 return (
                     <Link to = {`/${id}`} style={{textDecoration: 'none'}} key={id} className="course course__card">
@@ -36,7 +24,7 @@ function CoursesList ({pageNumber, courses}){
                             <div className="course__title">{title}</div>
                             <div className="course__description">{description}</div>
                             <div className="course__skills">Skills:</div>
-                            {temp}
+                            {skills?.length !== 1 ? skills?.map(skill =>{return <div key={skill}>{skill}</div>}) : <div>{skills[0]}</div> }
                             <div className="course__numbers">
                                 <div className="cousre__amount">Lessons: {lessonsCount}</div>
                                 <div className="cousre__rating">{rating}/5</div>
@@ -51,7 +39,7 @@ function CoursesList ({pageNumber, courses}){
         }
         return (
         <div className='list__wrapper'>
-            {content}
+            {loading ? <Spinner/> : content}
         </div>
         )
 
