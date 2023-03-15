@@ -1,14 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner";
+import VideoPlayer from "../../components/videoPlayer/videoPlayer";
+import LessonsList from "../../components/lessonsList/lessonsList";
+import '../CoursePage/coursePage.scss'
 
 function CoursePage(){
     const {id} = useParams();
+    let navigete = useNavigate();
     
     let _apiBase = `/api/core/preview-courses/${id}`;
     let [receivedData, updateReceivedData] = useState([])
     let [loading, updateLoading] = useState(true);
-    
     
 
     useEffect(() => {
@@ -30,25 +33,30 @@ function CoursePage(){
 
     return(
         <>
-        {loading ? <Spinner/> : <View receivedData={receivedData}/>}
+        {loading ? <Spinner/> : <View receivedData={receivedData} navigete={navigete} />}
         </>
     )
 }
 
-const View = ({receivedData}) => {
-    let navigete = useNavigate();
-    const {title, description, previewImageLink} = receivedData;
+const View = ({receivedData, navigete}) => {
+    let [lesson, setLesson] = useState(1)
+
+    const {title, description, lessons} = receivedData;
+    const videoLink = lessons[lesson-1]?.link
     return (
         <>
-        <div onClick={() => navigete(-1)} className="__link-back">GO BACK</div>
-        <div className="">
-            <img src={previewImageLink} alt='course img' className="__img"/>
-            <h1 className="__title">{title}</h1>
-            <div className="__info">
-                <h3>Informations</h3>
-                
+        <div onClick={() => navigete(-1)} className="page__link-back">GO BACK</div>
+        <div className='page__wrapper '>
+            <div className="page__info">
+                <h1 className="page__title">{title}</h1>
+                <VideoPlayer link={videoLink}/>
+                <div className="page__description">{description}</div>
+            </div>
+            <div className="lessons">
+                <LessonsList lessons={lessons} setLesson={setLesson}/>
             </div>
         </div>
+        
         </>
     )
 }

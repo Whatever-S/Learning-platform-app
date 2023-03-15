@@ -1,0 +1,59 @@
+@import '../../index.css';
+
+.lesson{
+    &__list{
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-direction: column;
+    }
+    &__item{
+        width: 400px;
+        min-height: 200px;
+        background: var(--bg-color);
+        margin: 0 5px 24px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
+        border-radius: 4px;
+        overflow: hidden;
+        color: inherit;
+        cursor:pointer;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+
+    @media (max-width:576px) {
+        width: 310px;
+        min-height: 308px;
+        margin-bottom: 32px;
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }    
+    
+    &:visited{
+        color: inherit;
+    }
+    }
+
+    &__img{
+        width:70%;
+        align-self: center;
+    }
+    &__info{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        flex-direction: column;
+    }
+    &__title{
+        font-size: 16px;
+        font-weight: var(--fw-bold);
+    }
+
+    &__status{
+        align-self:center;
+        justify-self: start;
+    }
+}
