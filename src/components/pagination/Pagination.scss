@@ -1,0 +1,17 @@
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: transparent;
+    border: 1px solid var(--text-color-light);
+    border-radius: 4px;
+    color: var(--text-color-dark)
+}

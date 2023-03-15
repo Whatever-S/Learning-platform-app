@@ -1,9 +1,12 @@
 import { useState, useEffect} from "react";
 import CoursesList from "../../components/coursesList/CoursesList";
+import Pagination from "../../components/pagination/Pagination";
+import '../MainPage/MainPage.scss'
 
 const MainPage = () =>{
     let [receivedData, updateReceivedData] = useState([]);
-
+    let [pageNumber, setPageNumber] = useState(1)
+    console.log(pageNumber)
     let _apiBase = `/api/core/preview-courses`;
 
     useEffect(() => {
@@ -26,8 +29,9 @@ const MainPage = () =>{
 
     return(
         <>
-        <h1>My learning platform</h1>
-        <CoursesList courses={receivedData.courses}/>
+        <h1 className="title">My learning platform</h1>
+        <CoursesList pageNumber={pageNumber} courses={receivedData.courses}/>
+        <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
         </>
     )
 }

@@ -1,25 +1,33 @@
 import { Link } from "react-router-dom"
+import { useState } from "react";
 import './CoursesList.scss';
 
-function CoursesList ({courses}){
-    let content ='',
-    counter = 0
+function CoursesList ({pageNumber, courses}){
+    let content ='';
+    //let [coursList, setcoursList] = useState(courses)
+    const startIndex = (pageNumber - 1) * 10;
+    const endIndex = pageNumber !== 3 ? startIndex + 10: startIndex + 9;
+  
+    // Get the courses to be displayed on the current page
+    let coursList;
 
     function skillsList(skills){
-        skills.map(skill => {
-            return (
-                <div>{skill}</div>
-            )              
-        })
+        if(skills){
+            skills.map(skill => {
+                return (
+                    <div>{skill}</div>
+                )              
+            })
+        }
+        
     }
 
     if(courses){
-        content = courses.map(char => {
-            while(counter < 10){
+        coursList = courses.slice(startIndex, endIndex);
+        content = coursList.map(char => {
                 const {title, description, id, previewImageLink, rating, lessonsCount, meta } = char;
                 const {skills} = meta,
                         temp = skillsList(skills)
-                counter++;
                 // console.log(previewImageLink)
                 return (
                     <Link to = {`/${id}`} style={{textDecoration: 'none'}} key={id} className="course course__card">
@@ -36,8 +44,7 @@ function CoursesList ({courses}){
                             
                         </div>
                     </Link>
-                    )
-            }          
+                    )       
         })
     }else {
         content = "There is no such courses"
