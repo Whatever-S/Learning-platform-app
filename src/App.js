@@ -1,12 +1,11 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import MainPage from './pages/MainPage/MainPage';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
     <Router>
-       <div className="App">
-        <div>Hi!</div> 
+       <div className="App container">
         <Routes>
           <Route path='/' element={<MainPage/>} />
         </Routes>

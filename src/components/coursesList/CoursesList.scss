@@ -14,8 +14,8 @@
     }
 }
 .course{
-    width: 240px;
-    min-height: 244px;
+    width: 320px;
+    min-height: 260px;
     background: var(--bg-color);
     margin: 0 5px 24px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
@@ -39,8 +39,8 @@
     }
 
     &__img{
-        width: 240px;
-        height: 168px;
+        width: 100%;
+        height: auto;
         object-fit: cover;
 
         @media (max-width:576px) {
@@ -51,22 +51,31 @@
 
     &__info{
         margin: 12px 16px;
-        text-align: start;
     }
 
-    &__name{
+    &__title{
+        text-align: center;
         font-weight: var(--fw-medium);
         font-size: 20px;
-        line-height: 30px;
+        line-height: 26px;
         letter-spacing: 0.15px;
     }
-    
-    &__specie{
+    &__description{
+        text-align: start;
         font-weight: var(--fw-regular);
-        font-size: 14px;
-        line-height: 21px;
+        font-size: 16px;
+        line-height: 20px;
         letter-spacing: 0.25px;
-        color: var(--text-color-light);
+        color: var(--text-color-light)
     }
+
+    &__numbers{
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+        justify-content: space-between;
+    }
+    
+
 }
 
