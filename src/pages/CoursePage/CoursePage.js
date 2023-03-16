@@ -25,7 +25,8 @@ function CoursePage(){
                 headers: new Headers({
                     Authorization: `Bearer ${token}`
                 })
-            }).then((res) => res.json());
+            }).then((res) => res.json())
+            .catch((err) => alert(`Opps..${err}`));
             updateReceivedData(data);
             updateLoading(false);
         })();
@@ -48,8 +49,9 @@ const View = ({receivedData, navigete}) => {
         <div onClick={() => navigete(-1)} className="page__link-back">GO BACK</div>
         <div className='page__wrapper '>
             <div className="page__info">
-                <h1 className="page__title">{title}</h1>
+                <h3>Lesson {lessonNumber} / {lessons?.length}</h3>
                 <VideoPlayer link={videoLink}/>
+                <h1 className="page__title">{title}</h1>
                 <div className="page__description">{description}</div>
             </div>
             <div className="page__lessons-list">

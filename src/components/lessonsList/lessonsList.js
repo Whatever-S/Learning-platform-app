@@ -6,11 +6,16 @@ function LessonsList ({lessons, setLesson, lessonNumber}) {
     if(lessons){
         content = lessons.map((lesson, i) => {
             const {title, order, status, previewImageLink, id} = lesson
+
             function onLessonClick(){
+                if (status !== 'locked')
                 setLesson(order)
             }
-            console.log(i+1,lessonNumber)
+
             i+1 === lessonNumber ? itemStyle ='lesson__item--selected' : itemStyle ='lesson__item'
+            if(status === 'locked')
+            itemStyle +=' lesson__item--locked'
+
             return(
                     <div key={id} className={itemStyle} onClick={onLessonClick}>
                         <img className="lesson__img" src={`${previewImageLink}/${order}.webp`} alt='Lesson preview'/>
