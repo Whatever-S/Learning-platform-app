@@ -1,8 +1,8 @@
 
 .page__wrapper{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items:start;
-        flex-direction:column;
+        flex-direction:row;
         flex-wrap: nowrap;
     }

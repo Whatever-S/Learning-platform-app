@@ -39,10 +39,10 @@ function CoursePage(){
 }
 
 const View = ({receivedData, navigete}) => {
-    let [lesson, setLesson] = useState(1)
+    let [lessonNumber, setLesson] = useState(1)
 
     const {title, description, lessons} = receivedData;
-    const videoLink = lessons[lesson-1]?.link
+    const videoLink = lessons[lessonNumber-1]?.link
     return (
         <>
         <div onClick={() => navigete(-1)} className="page__link-back">GO BACK</div>
@@ -52,8 +52,8 @@ const View = ({receivedData, navigete}) => {
                 <VideoPlayer link={videoLink}/>
                 <div className="page__description">{description}</div>
             </div>
-            <div className="lessons">
-                <LessonsList lessons={lessons} setLesson={setLesson}/>
+            <div className="page__lessons-list">
+                <LessonsList lessons={lessons} lessonNumber={lessonNumber} setLesson={setLesson}/>
             </div>
         </div>
         
