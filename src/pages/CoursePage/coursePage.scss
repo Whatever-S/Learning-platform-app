@@ -1,3 +1,16 @@
+@import '../../index.css';
+
+.page__link-back{
+    position: absolute;
+    color: var(--color-violet);
+    text-decoration: none;
+    font-weight: var(--fw-medium);
+    font-size: 18px;
+    line-height: 21px;
+    top: 25px;
+    left: 82px;
+    cursor:pointer;
+}
 
 .page__wrapper{
         display: flex;
@@ -5,4 +18,46 @@
         align-items:start;
         flex-direction:row;
         flex-wrap: nowrap;
+        margin-top: 40px;
+}
+
+.page__info{
+    .page__title{
+        color: var(--color-orange);
+        font-weight:var(--fw-bold);
+        letter-spacing: 0.35px;
+        font-size: 36px;
+        margin: 15px auto;
+        text-align: center;
     }
+
+    .page__description{
+        margin:  10px auto;
+        text-align: start;
+        font-weight: var(--fw-regular);
+        font-size: 18px;
+        letter-spacing: 0.25px;
+        color: var(--text-color-dark)
+    }
+
+    .page__lesson-amount{
+        font-weight: var(--fw-medium);
+        span{
+            color: var(--color-green);
+            font-size: 20px;
+            font-weight: var(--fw-bold);
+        }
+    }
+
+    .page__lesson-title{
+        text-align: start;
+        font-weight: var(--fw-bold);
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: 0.15px;
+        color: var(--color-violet);
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
+}

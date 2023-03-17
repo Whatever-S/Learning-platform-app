@@ -9,7 +9,6 @@
         margin-left: 20px;
     }
     &__item{
-        
         width: 380px;
         min-height: 150px;
         background: var(--bg-color);
@@ -29,26 +28,20 @@
         } 
 
         &--locked{
-            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.14);
-            width: 380px;
-            min-height: 150px;
-            background: #F7F3F3;
-            margin: 0 5px 24px;
-            border-radius: 4px;
-            overflow: hidden;
-            color: inherit;
-            cursor:pointer;
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-
+            background: transparent;
             &:hover{
                 transform: none;
+            }
+
+            .lesson__status{
+                span{
+                    color:red;
+                }
             }
         }
 
         &--selected{
-            box-shadow: 0px 5px 15px rgba(209, 33, 33, 0.2), 0px 3px 4px rgba(99, 25, 25, 0.76), 0px 2px 4px rgb(247, 3, 3);
+            box-shadow: var(--color-green) 0px 5px 10px;
             width: 380px;
             min-height: 150px;
             background: var(--bg-color);
@@ -71,11 +64,18 @@
     &:visited{
         color: inherit;
     }
+
     }
 
     &__img{
-        width:70%;
-        align-self: center;
+        width: 70%;
+        img{
+            width: 100%;
+            min-height: 150px;
+            object-fit: cover;
+
+        }
+        
     }
     &__info{
         margin: 10px 10px;
@@ -93,5 +93,8 @@
     &__status{
         align-self:start;
         justify-self: start;
+        span{
+            color: var(--color-green)
+        }
     }
 }
