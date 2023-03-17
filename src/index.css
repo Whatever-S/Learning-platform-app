@@ -9,8 +9,12 @@
 
 :root {
   --bg-color: #FFFFFF;
+  --bg-app-color: #F9FAFF;
   --text-color-light: #6E798C;
-  --text-color-dark: #081F32;
+  --text-color-dark: #041721;
+  --color-green:rgb(46, 187, 121);
+  --color-violet: rgba(67, 35, 207);
+  --color-orange: rgba(237, 88, 47);
 
   --fw-regular: 400;
   --fw-medium: 500;
@@ -23,7 +27,9 @@
 
 body {
   margin: 0;
-  /*font-family:'Roboto';*/
+  background-color: var(--bg-app-color) ;
+
+  font-family:'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

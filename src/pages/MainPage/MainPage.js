@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import CoursesList from "../../components/coursesList/CoursesList";
 import Pagination from "../../components/pagination/Pagination";
+import Spinner from "../../components/Spinner";
 import '../MainPage/MainPage.scss'
 
 const MainPage = () =>{
@@ -26,12 +27,18 @@ const MainPage = () =>{
         })();
     }, [_apiBase]);
 
-    console.log(receivedData);
-
     return(
         <>
         <h1 className="title">My learning platform</h1>
-        <CoursesList loading={loading}pageNumber={pageNumber} courses={receivedData.courses}/>
+        {loading ? <Spinner/> : <View pageNumber={pageNumber} courses={receivedData?.courses} setPageNumber={setPageNumber}/>}
+        </>
+    )
+}
+
+const View = ({pageNumber, courses, setPageNumber}) =>{
+    return(
+        <>
+        <CoursesList pageNumber={pageNumber} courses={courses}/>
         <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} />
         </>
     )

@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 import './CoursesList.scss';
-import Spinner from "../Spinner";
 
-function CoursesList ({loading, pageNumber, courses}){
+function CoursesList ({ pageNumber, courses}){
     let content ='';
     //let [coursList, setcoursList] = useState(courses)
     const startIndex = (pageNumber - 1) * 10;
@@ -23,11 +22,12 @@ function CoursesList ({loading, pageNumber, courses}){
                         <div className="course__info">
                             <div className="course__title">{title}</div>
                             <div className="course__description">{description}</div>
-                            <div className="course__skills">Skills:</div>
-                            {skills?.length !== 1 ? skills?.map(skill =>{return <div key={skill}>{skill}</div>}) : <div>{skills[0]}</div> }
+                            <div className="course__skills">Skills:
+                            {skills?.length !== 1 ? skills?.map(skill =>{return <div className="course__skills-item" key={skill}>{skill}</div>}) : <div className="course__skills-item">{skills[0]}</div> }
+                            </div>
                             <div className="course__numbers">
-                                <div className="cousre__amount">Lessons: {lessonsCount}</div>
-                                <div className="cousre__rating">{rating}/5</div>
+                                <div className="course__numbers-amount">Lessons:<span>{lessonsCount}</span></div>
+                                <div className="course__numbers-rating"><span>{rating}</span>/5</div>
                             </div>
                             
                         </div>
@@ -39,7 +39,7 @@ function CoursesList ({loading, pageNumber, courses}){
         }
         return (
         <div className='list__wrapper'>
-            {loading ? <Spinner/> : content}
+            {content}
         </div>
         )
 
