@@ -6,10 +6,18 @@
     text-decoration: none;
     font-weight: var(--fw-medium);
     font-size: 18px;
-    line-height: 21px;
+    line-height: 24px;
     top: 25px;
     left: 82px;
     cursor:pointer;
+    &::before {
+        content: "";
+        position: absolute;
+        left: -35px;
+        width: 100%;
+        height: 100%;
+        background: url('../../resources/img/arrow-left.png') no-repeat;
+}
 }
 
 .page__wrapper{
@@ -19,6 +27,11 @@
         flex-direction:row;
         flex-wrap: nowrap;
         margin-top: 40px;
+
+        @media (max-width: 1200px){
+            flex-wrap: wrap;
+            justify-content: start;
+        }
 }
 
 .page__info{
@@ -58,6 +71,7 @@
         color: var(--color-violet);
         margin-top: 15px;
         margin-bottom: 30px;
+
     }
 
 }
