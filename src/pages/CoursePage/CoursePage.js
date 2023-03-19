@@ -15,7 +15,6 @@ function CoursePage(){
     let [receivedData, updateReceivedData] = useState([])
     let [loading, updateLoading] = useState(true);
     
-    
     useEffect(() => {
         const header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
         const body = 'eyJzdWIiOiJkOTRlNjg4NS1kM2U5LTQwY2EtYTVjYy01MDRkNjZlZDVlN2QiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg3MDQ3NjIsImV4cCI6MTY3OTYwNDc2Mn0'
@@ -45,6 +44,7 @@ function CoursePage(){
 const View = ({receivedData, navigete, shortId}) => {
     let [lessonNumber, setLesson] = useState(parseInt(localStorage.getItem(`${shortId}-lessonNumber`)) || 1);
     let [lessonTitle, setLessonTitle] = useState(receivedData.lessons[0].title)
+    let [playbackRate, setPlaybackRate] = useState(1);
     const {title, description, lessons} = receivedData;
     let videoLink = lessons[lessonNumber-1]?.link
 
@@ -57,8 +57,11 @@ const View = ({receivedData, navigete, shortId}) => {
                 <div className="page__description">{description}</div>
                 <div className="page__lesson-amount">Lesson <span>{lessonNumber}</span> / {lessons?.length}</div>
                 <h3 className="page__lesson-title">{lessonTitle}</h3>
-                <VideoPlayer link={videoLink} lesson={lessonNumber} shortId={shortId}/>
-                
+                <VideoPlayer link={videoLink} lesson={lessonNumber} shortId={shortId} playbackRate={playbackRate} setPlaybackRate={setPlaybackRate}/>
+                <div className="page__lesson-speed">Speed: <span>{playbackRate}</span>
+                <br/>To increase the playback speed by 0.25 press "+", to decrease it press "-". 
+                <br/>Limits: 0.5 - 2.
+                </div>
             </div>
             <div className="page__lessons-list">
                 <LessonsList lessons={lessons} lessonNumber={lessonNumber} setLesson={setLesson} setLessonTitle={setLessonTitle} shortId={shortId}/>

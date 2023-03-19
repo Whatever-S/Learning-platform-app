@@ -71,7 +71,22 @@
         color: var(--color-violet);
         margin-top: 15px;
         margin-bottom: 30px;
-
     }
+
+    .page__lesson-speed{
+        span{
+        font-weight: var(--fw-bold);
+        font-size: 20px;
+        line-height: 22px;
+        color: var(--color-orange);
+        }
+        font-weight: var(--fw-regular);
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.15px;
+        color: var(--text-color-light);
+        margin-bottom: 10px;
+    }
+
 
 }

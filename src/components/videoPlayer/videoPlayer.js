@@ -1,8 +1,8 @@
-import ReactPlayer from 'react-player'
-import React, {useRef } from 'react';
+import ReactPlayer from 'react-player';
+import React, {useRef, useEffect } from 'react';
 import '../videoPlayer/videoPlayer.scss'
 
-function VideoPlayer({link, setVideoLink, lesson, shortId}) {
+function VideoPlayer({link,  lesson, shortId, playbackRate, setPlaybackRate}) {
     const playerRef = useRef();
 
     const handleReady = () => {
@@ -14,7 +14,27 @@ function VideoPlayer({link, setVideoLink, lesson, shortId}) {
     
     const handleProgress = (state) => {
         localStorage.setItem(`${shortId}-lesson${lesson}-progress`, state.playedSeconds);
-    };
+    }
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === '+') {
+            const newRate = playbackRate + 0.25;
+            if (newRate <= 2) {
+                setPlaybackRate(newRate);
+            }
+            } else if (e.key === '-') {
+            const newRate = playbackRate - 0.25;
+            if (newRate >= 0.5) {
+                setPlaybackRate(newRate);
+            }
+        }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [playbackRate]);
 
     return (
         <div className='video_player'>
@@ -27,6 +47,7 @@ function VideoPlayer({link, setVideoLink, lesson, shortId}) {
             ref={playerRef}
             onReady={handleReady}
             pip={true}
+            playbackRate={playbackRate}
             />
         </div>
     );
