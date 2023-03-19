@@ -6,5 +6,10 @@
     font-weight:var(--fw-bold);
     letter-spacing: 0.35px;
     font-size: 64px;
+
+    @media (max-width:768px) {
+        font-size: 50px;
+        text-align: center;
+    }
 }
 

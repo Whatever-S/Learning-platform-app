@@ -30,7 +30,7 @@ function LessonsList ({lessons, setLesson, lessonNumber, setLessonTitle, shortId
                             <img src={`${previewImageLink}/lesson-${order}.webp`} alt='Lesson preview'/>
                         </div>
                         <div className="lesson__info">
-                            <div className="lesson__title">{title}</div>
+                            <div className="lesson__title">{order}. {title}</div>
                             <div className='lesson__status'>Status: <span>{status}</span></div>
                         </div>
                     </div>

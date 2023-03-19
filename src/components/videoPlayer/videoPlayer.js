@@ -1,5 +1,6 @@
 import ReactPlayer from 'react-player';
 import React, {useRef, useEffect } from 'react';
+import Error from '../Error';
 import '../videoPlayer/videoPlayer.scss'
 
 function VideoPlayer({link,  lesson, shortId, playbackRate, setPlaybackRate}) {
@@ -38,7 +39,7 @@ function VideoPlayer({link,  lesson, shortId, playbackRate, setPlaybackRate}) {
 
     return (
         <div className='video_player'>
-            <ReactPlayer 
+            {link ? <ReactPlayer 
             url={link}
             controls={true}
             width = '100%'
@@ -48,7 +49,7 @@ function VideoPlayer({link,  lesson, shortId, playbackRate, setPlaybackRate}) {
             onReady={handleReady}
             pip={true}
             playbackRate={playbackRate}
-            />
+            /> : <Error/>}
         </div>
     );
 }

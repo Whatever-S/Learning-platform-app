@@ -9,7 +9,6 @@ function CoursePage(){
     const {id} = useParams();
     let navigete = useNavigate();
     let shortId = id.slice(0, 8)
-    console.log(shortId)
     
     let _apiBase = `/api/core/preview-courses/${id}`;
     let [receivedData, updateReceivedData] = useState([])
