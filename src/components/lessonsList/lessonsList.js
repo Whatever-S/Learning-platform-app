@@ -1,6 +1,11 @@
+import React, { useEffect } from 'react';
 import '../lessonsList/lessonsList.scss'
 
-function LessonsList ({lessons, setLesson, lessonNumber, setLessonTitle}) {
+function LessonsList ({lessons, setLesson, lessonNumber, setLessonTitle, shortId}) {
+    useEffect(() => {
+        localStorage.setItem(`${shortId}-lessonNumber`, lessonNumber);
+    }, [lessonNumber, shortId]);
+    
     let content, itemStyle
     
     if(lessons){
@@ -14,7 +19,7 @@ function LessonsList ({lessons, setLesson, lessonNumber, setLessonTitle}) {
                 
             }
 
-            i+1 === lessonNumber ? itemStyle ='lesson__item--selected' : itemStyle ='lesson__item'
+            (i+1 === lessonNumber) && (status !== 'locked') ? itemStyle ='lesson__item--selected' : itemStyle ='lesson__item'
 
             if(status === 'locked')
             itemStyle +=' lesson__item--locked'

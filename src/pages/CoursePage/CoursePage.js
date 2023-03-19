@@ -14,10 +14,8 @@ function CoursePage(){
     let _apiBase = `/api/core/preview-courses/${id}`;
     let [receivedData, updateReceivedData] = useState([])
     let [loading, updateLoading] = useState(true);
-    let [lessonNumber, setLesson] = useState(1);
     
     
-
     useEffect(() => {
         const header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
         const body = 'eyJzdWIiOiJkOTRlNjg4NS1kM2U5LTQwY2EtYTVjYy01MDRkNjZlZDVlN2QiLCJwbGF0Zm9ybSI6InN1YnNjcmlwdGlvbnMiLCJpYXQiOjE2Nzg3MDQ3NjIsImV4cCI6MTY3OTYwNDc2Mn0'
@@ -39,13 +37,13 @@ function CoursePage(){
     return(
         <>
         {loading ? <Spinner/> : 
-        <View receivedData={receivedData} navigete={navigete} shortId={shortId} lessonNumber={lessonNumber} setLesson={setLesson}/>}
+        <View receivedData={receivedData} navigete={navigete} shortId={shortId} />}
         </>
     )
 }
 
-const View = ({receivedData, navigete, shortId,lessonNumber,setLesson}) => {
-    
+const View = ({receivedData, navigete, shortId}) => {
+    let [lessonNumber, setLesson] = useState(parseInt(localStorage.getItem(`${shortId}-lessonNumber`)) || 1);
     let [lessonTitle, setLessonTitle] = useState(receivedData.lessons[0].title)
     const {title, description, lessons} = receivedData;
     let videoLink = lessons[lessonNumber-1]?.link
@@ -63,7 +61,7 @@ const View = ({receivedData, navigete, shortId,lessonNumber,setLesson}) => {
                 
             </div>
             <div className="page__lessons-list">
-                <LessonsList lessons={lessons} lessonNumber={lessonNumber} setLesson={setLesson} setLessonTitle={setLessonTitle}/>
+                <LessonsList lessons={lessons} lessonNumber={lessonNumber} setLesson={setLesson} setLessonTitle={setLessonTitle} shortId={shortId}/>
             </div>
         </div>
         
