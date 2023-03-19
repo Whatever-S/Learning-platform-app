@@ -8,7 +8,7 @@ const MainPage = () =>{
     let [receivedData, updateReceivedData] = useState([]);
     let [pageNumber, setPageNumber] = useState(1);
     let [loading, updateLoading] = useState(true);
-    let _apiBase = `/api/core/preview-courses`;
+    let _apiBase = `https://api.wisey.app/api/v1/core/preview-courses`;
 
     useEffect(() => {
         const header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'

@@ -10,7 +10,7 @@ function CoursePage(){
     let navigete = useNavigate();
     let shortId = id.slice(0, 8)
     
-    let _apiBase = `/api/core/preview-courses/${id}`;
+    let _apiBase = `https://api.wisey.app/api/v1/core/preview-courses/${id}`;
     let [receivedData, updateReceivedData] = useState([])
     let [loading, updateLoading] = useState(true);
     
