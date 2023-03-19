@@ -8,10 +8,14 @@ import '../CoursePage/coursePage.scss'
 function CoursePage(){
     const {id} = useParams();
     let navigete = useNavigate();
+    let shortId = id.slice(0, 8)
+    console.log(shortId)
     
     let _apiBase = `/api/core/preview-courses/${id}`;
     let [receivedData, updateReceivedData] = useState([])
     let [loading, updateLoading] = useState(true);
+    let [lessonNumber, setLesson] = useState(1);
+    
     
 
     useEffect(() => {
@@ -34,17 +38,18 @@ function CoursePage(){
 
     return(
         <>
-        {loading ? <Spinner/> : <View receivedData={receivedData} navigete={navigete} />}
+        {loading ? <Spinner/> : 
+        <View receivedData={receivedData} navigete={navigete} shortId={shortId} lessonNumber={lessonNumber} setLesson={setLesson}/>}
         </>
     )
 }
 
-const View = ({receivedData, navigete}) => {
-    let [lessonNumber, setLesson] = useState(1);
+const View = ({receivedData, navigete, shortId,lessonNumber,setLesson}) => {
+    
     let [lessonTitle, setLessonTitle] = useState(receivedData.lessons[0].title)
-
     const {title, description, lessons} = receivedData;
-    const videoLink = lessons[lessonNumber-1]?.link
+    let videoLink = lessons[lessonNumber-1]?.link
+
     return (
         <>
         <div onClick={() => navigete(-1)} className="page__link-back">GO BACK</div>
@@ -54,7 +59,7 @@ const View = ({receivedData, navigete}) => {
                 <div className="page__description">{description}</div>
                 <div className="page__lesson-amount">Lesson <span>{lessonNumber}</span> / {lessons?.length}</div>
                 <h3 className="page__lesson-title">{lessonTitle}</h3>
-                <VideoPlayer link={videoLink}/>
+                <VideoPlayer link={videoLink} lesson={lessonNumber} shortId={shortId}/>
                 
             </div>
             <div className="page__lessons-list">
@@ -64,6 +69,7 @@ const View = ({receivedData, navigete}) => {
         
         </>
     )
+
 }
 
 export default CoursePage
