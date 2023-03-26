@@ -2,6 +2,7 @@
 
 This project is deployed by the link:
 https://learning-platform-app.vercel.app/
+
 !Please, run in with working CORS plugin:
 https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
 
